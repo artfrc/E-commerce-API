@@ -4,10 +4,10 @@ Curso realizado pela Rocketseat, com foco em criar uma API em Python para um E-c
 
 ## Sumário
 
-⚫ [Introdução](#introdução)
-⚫ [Tecnologias](#tecnologias)
-⚫ [Instalação](#instalação)
-⚫ [Autores](#autores)
+- ⚫ [Introdução](#introdução)
+- ⚫ [Tecnologias](#tecnologias)
+- ⚫ [Instalação](#instalação)
+- ⚫ [Autores](#autores)
 
 ## Introdução
 
