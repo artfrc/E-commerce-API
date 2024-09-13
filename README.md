@@ -27,6 +27,9 @@ As principais tecnologias e ferramentas utilizadas neste projeto são:
 ## Rotas da API
 ![image](https://github.com/user-attachments/assets/b3ce5d98-d4dc-49db-be59-00f160e049af)
 
+### ◻️Testar as rotas utilizando _Swagger Editor_:
+👉 [Swagger Editor](https://editor.swagger.io/#:~:text=%3Ciframe%20src=%22https://www.googletagmanager.com/ns.html?id=GTM-PFFSBW3%22%20height=%220%22%20width=%220%22)
+
 
 ## Instalação
 ### _❗Para Linux_
