@@ -25,7 +25,8 @@ As principais tecnologias e ferramentas utilizadas neste projeto são:
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) - Extensão do Flask para Cross-Origin Resource Sharing (CORS).
 
 ## Rotas da API
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/b3ce5d98-d4dc-49db-be59-00f160e049af)
+
 
 ## Instalação
 ### _❗Para Linux_
