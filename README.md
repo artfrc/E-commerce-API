@@ -4,10 +4,10 @@ Curso realizado pela Rocketseat, com foco em criar uma API em Python para um E-c
 
 ## Sumário
 
-- ⚫ [Introdução](#introdução)
-- ⚫ [Tecnologias](#tecnologias)
-- ⚫ [Instalação](#instalação)
-- ⚫ [Autores](#autores)
+-⚪ [Introdução](#introdução)
+-⚪ [Tecnologias](#tecnologias)
+-⚪ [Instalação](#instalação)
+-⚪ [Autores](#autores)
 
 ## Introdução
 
@@ -24,7 +24,7 @@ As principais tecnologias e ferramentas utilizadas neste projeto são:
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) - Extensão do Flask para Cross-Origin Resource Sharing (CORS).
 
 ## Instalação
-❗Para Linux
+### _❗Para Linux_
 
 ### 1. Verificar se o Python está instalado:
 
@@ -60,7 +60,7 @@ source venv/bin/activate
 
 ```
 ### 5. Instalar as dependências do projeto:
-❗Certifique-se de estar no diretório do projeto, onde o arquivo **requeriments.txt** está localizado, e execute:
+### ❗Certifique-se de estar no diretório do projeto, onde o arquivo _requeriments.txt_ está localizado, e execute:
 
 ```bash
 pip3 install -r requeriments.txt
