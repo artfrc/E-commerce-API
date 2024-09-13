@@ -1,22 +1,39 @@
+### --- Importaçẽs --- ###
+
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user,  current_user
+
+# ------------------------------------------------------------------------------------------------------------------------------
+
+### --- Configurando a aplicação Flask e o banco de dados da aplicação --- ###
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "my_key_123"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ecommerce.db'
 
+# ------------------------------------------------------------------------------------------------------------------------------
+
+# --- Configurando diferentes partes da sua aplicação Flask para gerenciar a autenticação de usuários, o banco de dados, e permitir requisições de diferentes origens (CORS). 
+
 login_manager = LoginManager()
-db = SQLAlchemy(app)
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+db = SQLAlchemy(app)
 CORS(app)
+
+# ------------------------------------------------------------------------------------------------------------------------------
+
+
+### --- Criação das tabelas no banco de dados ###
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=True, unique=True)
     password = db.Column(db.String(80), nullable=True)
+    cart = db.relationship('cartItem', backref='user', lazy=True) #backref cria uma referência de relacionamento bidirecional, pode acessar os dados a partir de ambos os lados dessa relação. 
+    # O parâmetro lazy define como os dados relacionados são carregados do banco de dados. lazy=True ou lazy='select': Os dados relacionados só serão carregados sob demanda.
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,17 +41,26 @@ class Product(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=True)
 
-@login_manager.user_loader
+class cartItem(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+        product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False) 
+
+# ----------------------------------------------------------------------------------------------------------------------------- 
+
+
+# Pega o user_id (que é um valor armazenado na sessão do usuário autenticado) e usa o SQLAlchemy para consultar o banco de dados e retornar o objeto User correspondente. Isso permite que o Flask-Login reconheça quem é o usuário autenticado durante as requisições.
+
+@login_manager.user_loader # diz ao Flask-Login que a função será usada para carregar um usuário a partir de um ID fornecido.
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+### --- rotas de login e logout --- ###
 
 @app.route('/login', methods=["POST"])
 def login():
     data = request.json
-    # username = data.get("username")
-    # password = data.get("password")
 
     user = User.query.filter_by(username =data.get("username")).first()
     
@@ -50,6 +76,9 @@ def logout():
     logout_user()
     return  jsonify({'message': "Logout feito com sucesso"})
 
+# -----------------------------------------------------------------------------------------------------------------------------
+
+### --- Rotas produtos --- ###
 
 @app.route('/api/products/add', methods=["POST"])
 @login_required
@@ -125,6 +154,71 @@ def get_products():
 
     return jsonify(product_list)
 
+# ------------------------------------------------------------------------------------------------------------------------------
+
+
+
+### --- Checkout --- ###
+
+@app.route('/api/cart/add/<int:product_id>', methods=["POST"])
+@login_required
+def add_to_cart(product_id):
+    user = User.query.get(int(current_user.id))
+    product = Product.query.get(product_id)
+
+    if user and product:
+        cart_item = cartItem(user_id = user.id, product_id = product.id)
+        db.session.add(cart_item)
+        db.session.commit()
+        return jsonify({'message': "Item adicionado ao carrinho com sucesso"})
+    
+    return jsonify({'message': "Falha ao adicionar item ao carrinho com sucesso"}), 400
+# ------------------------------------------------------------------------------------------------------------------------------
+
+### --- Rotas do carrinho --- ###
+
+@app.route('/api/cart/remove/<int:product_id>', methods= ["DELETE"])
+@login_required
+def delete_from_cart(product_id):
+    cart_item = cartItem.query.filter_by(user_id = current_user.id, product_id = product_id).first()
+    if cart_item:
+        db.session.delete(cart_item)
+        db.session.commit()
+        return jsonify({'message': "Item removido do carrinho com sucesso"})
+    
+    return jsonify({'message': "Falha ao remover item do carrinho"}), 400
+
+@app.route('/api/cart', methods= ["GET"])
+@login_required
+def view_cart():
+    user = User.query.get(int(current_user.id))
+    cart_itens = user.cart
+    cart_content = []
+    for item in cart_itens:
+        product = Product.query.get(int(item.product_id))
+        cart_content.append({
+            "id": item.id,
+            "product_id": item.product_id,
+            "product_name": product.name,
+            "product_price": product.price
+        })
+    
+    return jsonify(cart_content)
+
+@app.route('/api/cart/checkout', methods=["POST"])
+@login_required
+def checkout():
+    user = User.query.get(int(current_user.id))
+    cart_itens = user.cart
+    for item in cart_itens:
+        db.session.delete(item)
+       
+    db.session.commit()
+    return jsonify({'message': "Checkout feito com sucesso. Carrinho foi limpo"})
+
+# ------------------------------------------------------------------------------------------------------------------------------
+
+### --- Rota para página inicial --- ###
 @app.route('/')
 def hello_world():
     return 'Hello World!'
