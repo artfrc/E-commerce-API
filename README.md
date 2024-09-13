@@ -6,6 +6,7 @@ Curso realizado pela Rocketseat, com foco em criar uma API em Python para um E-c
 
 ⚪ [Introdução](#introdução)
 ⚪ [Tecnologias](#tecnologias)
+⚪ [Rotas da API](#rotas-da-api)
 ⚪ [Instalação](#instalação)
 ⚪ [Autores](#autores)
 
@@ -22,6 +23,9 @@ As principais tecnologias e ferramentas utilizadas neste projeto são:
 - [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/latest/) - Extensão do Flask para SQLAlchemy.
 - [Flask-Login](https://flask-login.readthedocs.io/en/latest/) - Extensão do Flask para autenticação de usuários.
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/) - Extensão do Flask para Cross-Origin Resource Sharing (CORS).
+
+## Rotas da API
+![alt text](image.png)
 
 ## Instalação
 ### _❗Para Linux_
@@ -68,3 +72,4 @@ pip3 install -r requeriments.txt
 ```
 ## Autores
 Arthur Fernandes Ribeiro Costa
+
