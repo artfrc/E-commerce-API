@@ -156,9 +156,7 @@ def get_products():
 
 # ------------------------------------------------------------------------------------------------------------------------------
 
-
-
-### --- Checkout --- ###
+### --- Rotas do carrinho --- ###
 
 @app.route('/api/cart/add/<int:product_id>', methods=["POST"])
 @login_required
@@ -173,9 +171,7 @@ def add_to_cart(product_id):
         return jsonify({'message': "Item adicionado ao carrinho com sucesso"})
     
     return jsonify({'message': "Falha ao adicionar item ao carrinho com sucesso"}), 400
-# ------------------------------------------------------------------------------------------------------------------------------
 
-### --- Rotas do carrinho --- ###
 
 @app.route('/api/cart/remove/<int:product_id>', methods= ["DELETE"])
 @login_required
