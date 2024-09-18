@@ -1,6 +1,6 @@
 ### --- Importaçẽs --- ###
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user,  current_user
@@ -217,7 +217,7 @@ def checkout():
 ### --- Rota para página inicial --- ###
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
