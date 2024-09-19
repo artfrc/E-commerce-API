@@ -1,17 +1,19 @@
 :root {
     font-family: serif;
+    
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    
+    background-color: #f1f1f170;
 }
 
 .page {
     display: flex; 
     width: 100%;
+    
 }
 
 #busca-cliente {
@@ -19,7 +21,8 @@
     padding: 8px;
     margin: 8px;
     width: 30%;
-    background-color: #ffffff;
+    background-color: #f1f1f170;
+    
 }
 #busca-cliente p {
     margin-bottom: 4px;
@@ -34,6 +37,13 @@
     width: 69%;
     background-color: #f1f1f1;
     border: 1px solid black;
+    outline: none;
+    transition: border-color 0.2s ease, border-width 0.3s ease;
+}
+
+#id-produto-input:focus {
+    border-color: #78c005;
+    border-width: 3px;
 }
 
 #inputs-busca {
@@ -65,7 +75,7 @@
     padding: 8px;
     margin: 8px;
     width: 70%;
-    background-color: #ffffff;
+    background-color: #f1f1f170;
 }
 
 .label {
