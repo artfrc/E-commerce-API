@@ -74,7 +74,7 @@
     border: 1px solid;
     padding: 8px;
     margin: 8px;
-    width: 70%;
+    /* width: 70%; */
     background-color: #f1f1f170;
 }
 
@@ -94,4 +94,25 @@
 h3 {
     color: #78c005;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove as bordas duplas entre as células */
+    margin-top: 10px; /* Adiciona um pouco de espaço acima da tabela */
+}
+
+th, td {
+    padding: 10px 15px; /* Adiciona espaçamento interno (padding) nas células */
+    border: 1px solid #ddd; /* Adiciona borda fina entre as células */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+th {
+    background-color: #f4f4f4; /* Cor de fundo para cabeçalhos */
+}
+
+td {
+    background-color: #fff; /* Cor de fundo para os dados */
+}
+
 
