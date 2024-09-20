@@ -22,17 +22,21 @@
     max-width: 30%;
     background-color: #f1f1f170;
     border-radius: 4px;
-    
+    font-size: 20px;
 }
 #busca-cliente p {
     margin-bottom: 4px;
 }
 
-#busca-cliente form {
+ form {
     display: flex;
     flex-direction: column;
+    margin-top: 8px;
 }
 
+label {
+    font-weight: bold;
+}
 
 #id-produto-input, #nome-produto-input, #descricao-produto-input {
     margin-left: 4px;
@@ -53,7 +57,7 @@
 }
 
 #descricao-produto-input {
-    width: 80%;
+    width: 70%;
 }
 
 #id-produto-input:focus, #nome-produto-input:focus, #descricao-produto-input:focus{
@@ -97,7 +101,7 @@
 .label {
     font-weight: bold;
     margin-right: 4px;
-}
+}   
 #dados-produto .item {
     display: flex;
 }
