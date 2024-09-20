@@ -4,18 +4,20 @@ document.getElementById("limpar-busca").addEventListener("click", function() {
 
 
 document.getElementById("carregar-busca").addEventListener("click", function(event) {
-    event.preventDefault(); // Evita o comportamento padrão do formulário
+    event.preventDefault(); 
 
-    // Captura o ID do produto inserido no input
+    
     const productId = document.getElementById("id-produto-input").value;
+    const productName = document.getElementById("nome-produto-input").value;
+    const productDescription = document.getElementById("descricao-produto-input").value;
 
-    if (!productId) {
-        alert("Por favor, insira o ID do produto.");
+    if (!productId && !productName && !productDescription) {
+        alert("Por favor, insira algum campo para fazer a busca.");
         return;
     }
 
     // Faz a requisição ao backend
-    fetch(`/api/products/${productId}`)
+    fetch(`/api/products/${productDescription}`)
         .then(response => response.json())
         .then(data => {
             // Limpa o conteúdo anterior

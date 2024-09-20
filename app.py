@@ -139,7 +139,7 @@ def get_product_by_description(product_description):
 @app.route('/api/products/<string:product_name>', methods=["GET"])
 def get_product_by_name(product_name):
     product_name_lower = product_name.lower()
-
+    
     product = Product.query.filter(func.lower(Product.name) == product_name_lower).first()
 
     if product:
