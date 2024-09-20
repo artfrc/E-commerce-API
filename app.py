@@ -118,12 +118,28 @@ def get_product_details(product_id):
     
     return  jsonify({'message': "Produto não encontrado"}), 404
 
+@app.route('/api/products/<string:product_description>', methods=["GET"])
+def get_product_by_description(product_description):    
+    product_description_cleaned = product_description.strip().lower().replace(" ", "")
+
+    product = Product.query.filter(
+        func.replace(func.lower(func.trim(Product.description)), " ", "") == product_description_cleaned
+    ).first()
+
+    if product:
+        return jsonify({
+            "id": product.id,
+            "name": product.name,
+            "price": product.price,
+            "description": product.description
+        })
+
+    return jsonify({'message': "Produto não encontrado"}), 404
+
 @app.route('/api/products/<string:product_name>', methods=["GET"])
 def get_product_by_name(product_name):
-    # Converter o input para minúsculas
     product_name_lower = product_name.lower()
 
-    # Comparar o nome do produto no banco de dados usando lower()
     product = Product.query.filter(func.lower(Product.name) == product_name_lower).first()
 
     if product:
