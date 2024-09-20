@@ -1,6 +1,5 @@
 :root {
     font-family: serif;
-    
 }
 
 * {
@@ -20,8 +19,9 @@
     border: 1px solid;
     padding: 8px;
     margin: 8px;
-    width: 30%;
+    max-width: 30%;
     background-color: #f1f1f170;
+    border-radius: 4px;
     
 }
 #busca-cliente p {
@@ -30,18 +30,33 @@
 
 #busca-cliente form {
     display: flex;
+    flex-direction: column;
 }
 
-#id-produto-input {
+
+#id-produto-input, #nome-produto-input, #descricao-produto-input {
     margin-left: 4px;
-    width: 69%;
+    width: 90%;
     background-color: #f1f1f1;
     border: 1px solid black;
     outline: none;
     transition: border-color 0.2s ease, border-width 0.3s ease;
+    border-radius: 2px;
 }
 
-#id-produto-input:focus {
+#id-produto-input {
+    width: 15%;
+}
+
+#nome-produto-input {
+    width: 80%;
+}
+
+#descricao-produto-input {
+    width: 80%;
+}
+
+#id-produto-input:focus, #nome-produto-input:focus, #descricao-produto-input:focus{
     border-color: #78c005;
     border-width: 3px;
 }
@@ -57,6 +72,7 @@
     background-color: #78c005;
     color: white;
     font-weight: bolder;
+    font-size: large;
     border: 1px solid black;
     padding: 4px 4px;
     margin: 8px 4px;
@@ -67,7 +83,7 @@
 }
 
 #carregar-busca:hover, #limpar-busca:hover {
-    background-color: #578b02;
+    background-color: #578b02;  
 }
 
 #dados-produto {
