@@ -118,21 +118,6 @@ def get_product_details(product_id):
     
     return  jsonify({'message': "Produto não encontrado"}), 404
 
-@app.route('/api/products/<string:product_description>', methods=["GET"])
-def get_product_details_descripion(product_description):
-
-    product = Product.query.filter(Product.description == product_description).first()
-
-    if product:
-        return  jsonify({
-            "id": product.id,
-            "name": product.name,
-            "price": product.price,
-            "description": product.description
-        })
-    
-    return  jsonify({'message': "Produto não encontrado"}), 404
-
 @app.route('/api/update/<int:product_id>', methods=["PUT"])
 @login_required
 def update_product(product_id):

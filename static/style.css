@@ -22,18 +22,25 @@
     max-width: 30%;
     background-color: #f1f1f170;
     border-radius: 4px;
-    
+    font-size: 20px;
 }
 #busca-cliente p {
     margin-bottom: 4px;
 }
 
-#busca-cliente form {
+ form {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     font-weight: bold;
+=======
+    margin-top: 8px;
+>>>>>>> 41317791b1d04d115a382bb76af1e719be168a25
 }
 
+label {
+    font-weight: bold;
+}
 
 #id-produto-input, #nome-produto-input, #descricao-produto-input {
     margin-left: 4px;
@@ -98,7 +105,7 @@
 .label {
     font-weight: bold;
     margin-right: 4px;
-}
+}   
 #dados-produto .item {
     display: flex;
 }
