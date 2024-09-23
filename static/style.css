@@ -91,10 +91,11 @@ label {
 }
 
 #dados-produto {
+    display: none;
     border: 1px solid;
     padding: 8px;
     margin: 8px;
-    max-width: 70%;
+    max-width: 65%;
     background-color: #f1f1f170;
     border-radius: 4px;
 }

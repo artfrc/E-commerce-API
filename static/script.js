@@ -1,5 +1,7 @@
 document.getElementById("limpar-busca").addEventListener("click", function() {
     document.querySelector("#busca-cliente form").reset();
+    const Section = document.getElementById("dados-produto")
+    Section.style.display = 'none';
 });
 
 function Request(url) {
@@ -16,6 +18,9 @@ function Request(url) {
                 produtoInfoDiv.innerHTML = `<p>${data.message}</p>`;
                 return;
             }
+
+            const Section = document.getElementById("dados-produto")
+            Section.style.display = 'block';
 
             // Cria a tabela
             const table = document.createElement("table");
