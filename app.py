@@ -136,6 +136,25 @@ def get_product_by_name(product_name):
 
     return jsonify({'message': "Produto não encontrado"}), 404
 
+@app.route('/api/products/description/<string:product_description>', methods=["GET"])
+def get_product_by_description(product_description):
+    product_description_clean = product_description.lower().strip()
+
+    # Remover espaços e comparar a descrição do produto no banco de dados
+    product = Product.query.filter(
+        func.lower(func.replace(Product.description, ' ', '')) == product_description_clean.replace(' ', '')
+    ).first()
+
+    if product:
+        return jsonify({
+            "id": product.id,
+            "name": product.name,
+            "price": product.price,
+            "description": product.description
+        })
+
+    return jsonify({'message': "Produto não encontrado"}), 404
+
 @app.route('/api/update/<int:product_id>', methods=["PUT"])
 @login_required
 def update_product(product_id):

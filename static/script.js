@@ -59,12 +59,19 @@ document.getElementById("carregar-busca").addEventListener("click", function(eve
 
     const productName = document.getElementById("nome-produto-input").value;
 
-    if (!productId && !productName) {
-        alert("Por favor, insira o ID ou nome do produto.");
+    const productDescription = document.getElementById("descricao-produto-input").value;
+
+    if (!productId && !productName && !productDescription) {
+        alert("Por favor, insira algum campo para fazer a busca.");
         return;
     }
 
-    if (productId && productName) {
+    let count = 0
+    if (productId) count++
+    if (productName) count++
+    if (productDescription) count++
+
+    if (count > 1) {
         alert("Por favor, utilize apenas um campo para buscar.");
         return;
     }
@@ -72,8 +79,10 @@ document.getElementById("carregar-busca").addEventListener("click", function(eve
     // Faz a requisição ao backend
     if(productName) {
         Request(`/api/products/name/${productName}`);
-    } else {
+    } else if(productId) {
         Request(`/api/products/${productId}`);
+    } else {
+        Request(`/api/products/description/${productDescription}`);
     }
     
 });
