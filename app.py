@@ -118,7 +118,7 @@ def get_product_details(product_id):
     
     return  jsonify({'message': "Produto não encontrado"}), 404
 
-@app.route('/api/products/<string:product_name>', methods=["GET"])
+@app.route('/api/products/name/<string:product_name>', methods=["GET"])
 def get_product_by_name(product_name):
     # Converter o input para minúsculas
     product_name_lower = product_name.lower()

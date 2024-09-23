@@ -9,13 +9,15 @@ document.getElementById("carregar-busca").addEventListener("click", function(eve
     // Captura o ID do produto inserido no input
     const productId = document.getElementById("id-produto-input").value;
 
-    if (!productId) {
-        alert("Por favor, insira o ID do produto.");
+    const productName = document.getElementById("nome-produto-input").value;
+
+    if (!productId && !productName) {
+        alert("Por favor, insira o ID ou nome do produto.");
         return;
     }
 
     // Faz a requisição ao backend
-    fetch(`/api/products/${productId}`)
+    fetch(`/api/products/name/${productName}`)
         .then(response => response.json())
         .then(data => {
             // Limpa o conteúdo anterior
