@@ -118,6 +118,7 @@ def get_product_details(product_id):
     
     return  jsonify({'message': "Produto não encontrado"}), 404
 
+<<<<<<< HEAD
 @app.route('/api/products/name/<string:product_name>', methods=["GET"])
 def get_product_by_name(product_name):
     # Converter o input para minúsculas
@@ -136,6 +137,8 @@ def get_product_by_name(product_name):
 
     return jsonify({'message': "Produto não encontrado"}), 404
 
+=======
+>>>>>>> 04721ec1530b0abda243a4a66fdc04246ff79b5c
 @app.route('/api/update/<int:product_id>', methods=["PUT"])
 @login_required
 def update_product(product_id):
