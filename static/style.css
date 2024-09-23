@@ -31,11 +31,7 @@
  form {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
     font-weight: bold;
-=======
-    margin-top: 8px;
->>>>>>> 41317791b1d04d115a382bb76af1e719be168a25
 }
 
 label {
@@ -98,8 +94,9 @@ label {
     border: 1px solid;
     padding: 8px;
     margin: 8px;
-    /* width: 70%; */
+    max-width: 70%;
     background-color: #f1f1f170;
+    border-radius: 4px;
 }
 
 .label {
@@ -132,7 +129,8 @@ th, td {
 }
 
 th {
-    background-color: #f4f4f4; /* Cor de fundo para cabeçalhos */
+    background-color: #239687; /* Cor de fundo para cabeçalhos */
+    color: #f4f4f4;
 }
 
 td {
