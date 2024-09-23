@@ -2,22 +2,9 @@ document.getElementById("limpar-busca").addEventListener("click", function() {
     document.querySelector("#busca-cliente form").reset();
 });
 
-
-document.getElementById("carregar-busca").addEventListener("click", function(event) {
-    event.preventDefault(); // Evita o comportamento padrão do formulário
-
-    // Captura o ID do produto inserido no input
-    const productId = document.getElementById("id-produto-input").value;
-
-    const productName = document.getElementById("nome-produto-input").value;
-
-    if (!productId && !productName) {
-        alert("Por favor, insira o ID ou nome do produto.");
-        return;
-    }
-
-    // Faz a requisição ao backend
-    fetch(`/api/products/name/${productName}`)
+function Request(url) {
+    
+    fetch(`${url}`)
         .then(response => response.json())
         .then(data => {
             // Limpa o conteúdo anterior
@@ -62,4 +49,31 @@ document.getElementById("carregar-busca").addEventListener("click", function(eve
             console.error('Erro ao buscar o produto:', error);
             document.getElementById("produto-info").innerHTML = `<p>Erro ao buscar o produto.</p>`;
         });
+}
+
+document.getElementById("carregar-busca").addEventListener("click", function(event) {
+    event.preventDefault(); // Evita o comportamento padrão do formulário
+
+    // Captura o ID do produto inserido no input
+    const productId = document.getElementById("id-produto-input").value;
+
+    const productName = document.getElementById("nome-produto-input").value;
+
+    if (!productId && !productName) {
+        alert("Por favor, insira o ID ou nome do produto.");
+        return;
+    }
+
+    if (productId && productName) {
+        alert("Por favor, utilize apenas um campo para buscar.");
+        return;
+    }
+
+    // Faz a requisição ao backend
+    if(productName) {
+        Request(`/api/products/name/${productName}`);
+    } else {
+        Request(`/api/products/${productId}`);
+    }
+    
 });
