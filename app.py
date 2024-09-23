@@ -4,6 +4,7 @@ from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user,  current_user
+from sqlalchemy import func
 
 # ------------------------------------------------------------------------------------------------------------------------------
 
@@ -107,6 +108,21 @@ def delete_product(product_id):
 @app.route('/api/products/<int:product_id>', methods=["GET"])
 def get_product_details(product_id):
     product = Product.query.get(product_id)
+    if product:
+        return  jsonify({
+            "id": product.id,
+            "name": product.name,
+            "price": product.price,
+            "description": product.description
+        })
+    
+    return  jsonify({'message': "Produto não encontrado"}), 404
+
+@app.route('/api/products/<string:product_description>', methods=["GET"])
+def get_product_details_descripion(product_description):
+
+    product = Product.query.filter(Product.description == product_description).first()
+
     if product:
         return  jsonify({
             "id": product.id,

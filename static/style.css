@@ -31,12 +31,13 @@
 #busca-cliente form {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
 }
 
 
 #id-produto-input, #nome-produto-input, #descricao-produto-input {
     margin-left: 4px;
-    width: 90%;
+    margin-top: 6px;
     background-color: #f1f1f1;
     border: 1px solid black;
     outline: none;
@@ -49,11 +50,11 @@
 }
 
 #nome-produto-input {
-    width: 80%;
+    width: 70%;
 }
 
 #descricao-produto-input {
-    width: 80%;
+    width: 70%;
 }
 
 #id-produto-input:focus, #nome-produto-input:focus, #descricao-produto-input:focus{
